@@ -3,6 +3,8 @@ package hello;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
@@ -49,6 +52,9 @@ public class Auction implements Serializable {
 	private String modifier;
 
 	private Boolean active;
+	@OneToMany(mappedBy = "auction")
+	@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+	private Set<Item> itemSet = new HashSet<>();
 
 	public Auction(Long id, String name, String description, BigDecimal minPrice) {
 		this.id = id;
@@ -160,6 +166,14 @@ public class Auction implements Serializable {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Set<Item> getItemSet() {
+		return itemSet;
+	}
+
+	public void setItemSet(Set<Item> itemSet) {
+		this.itemSet = itemSet;
 	}
 
 }

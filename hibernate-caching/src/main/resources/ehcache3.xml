@@ -1,5 +1,5 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd" defaultTransactionTimeoutInSeconds="15">
+		 xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd" defaultTransactionTimeoutInSeconds="15" updateCheck="false">
 		 <diskStore path="c:/ehcache"/>
 <defaultCache maxElementsInMemory="10000"  overflowToDisk="true" statistics="true" transactionalMode="local" >
 
